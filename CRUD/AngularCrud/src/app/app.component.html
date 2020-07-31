@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <title>Contactos</title>
+    <meta charset="UTF-8">
+  </head>
+  <body>
+    <nav class="navbar navbar-dark bg-dark">
+      <a class="navbar-brand" href="/">Contactos</a>
+    </nav>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-5">
+    
+          <div class="card mt-5">
+            <div class="card-body">
+                <form #productForm="ngForm" >
+                    <!-- TO UPDATE -->
+                    <input type="hidden" name="identificador" #$key="ngModel" [(ngModel)]="contactoMarcado.identificador">
+          
+                    <div class="form-group">
+                      <input 
+                        type="text"
+                        class="form-control"
+                        name="Nombre"
+                        #nombre="ngModel"
+                        [(ngModel)]="contactoMarcado.nombre"
+                        placeholder="Nombre"
+                        required
+                        >
+                    </div>
+          
+                    <div class="form-group">
+                      <input 
+                        type="text"
+                        class="form-control"
+                        name="Apellido1"
+                        #apellido1="ngModel"
+                        [(ngModel)]="contactoMarcado.apellido1"
+                        placeholder="Primero Apellido"
+                        required
+                        >
+                    </div>
+          
+                    <div class="form-group">
+                      <input 
+                        type="text"
+                        class="form-control"
+                        name="Apellido2"
+                        #apellido2="ngModel"
+                        [(ngModel)]="contactoMarcado.apellido2"
+                        placeholder="Segundo Apellido"
+                        required
+                        >
+                    </div>
+          
+                    <div class="form-group">
+                        <input 
+                          type="number"
+                          class="form-control"
+                          name="Telefono"
+                          #telefono="ngModel"
+                          [(ngModel)]="contactoMarcado.telefono"
+                          placeholder="Telefono"
+                          required
+                          >
+                      </div>
+          
+          
+                    <div class="form-group">
+                      <input 
+                        type="number"
+                        class="form-control"
+                        name="Telefono2"
+                        #telefono2="ngModel"
+                        [(ngModel)]="contactoMarcado.telefono2"
+                        placeholder="Segundo Telefono (No obligatorio)"
+                        >
+                    </div>
+          
+                    <div class="form-group">
+                      <input 
+                        type="email"
+                        class="form-control"
+                        name="Correo"
+                        #Correo="ngModel"
+                        [(ngModel)]="contactoMarcado.Correo"
+                        placeholder="Correo Electronico"
+                        required
+                        >
+                    </div>
+          
+                    <div class="form-group">
+                      <input 
+                        type="text"
+                        class="form-control"
+                        name="Profesion"
+                        #Profesion="ngModel"
+                        [(ngModel)]="contactoMarcado.Profesion"
+                        placeholder="Profesión"
+                        required
+                        >
+                    </div>
+          
+                    <div class="form-group">
+                      <button *ngIf="contactoMarcado.identificador === 0"
+                      class="btn btn-primary" type="Agregar" (click)="agregar()" >
+                          <i class="fas fa-plus-circle"></i>Agregar Contacto
+                      </button>
+
+                      <button *ngIf="contactoMarcado.identificador === 0"
+                      class="btn btn-secondary" type="Eliminar" (click)="eliminarDatos()" >
+                          <i class="fas fa-sync-alt"></i> Eliminar Datos
+                      </button>
+
+                      <button *ngIf="contactoMarcado.identificador !== 0"
+                       class="btn btn-danger" type="Editar" (click)="completarEditar()" >
+                        Terminar Editar
+                      </button>
+
+
+                    </div>
+                  </form>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-7 text-center">
+            <div class="card mt-5">
+      <div class="card-body">
+        <h6 class="text-center">
+          Lista de Contactos
+        </h6>
+        <h6 class="text-left">
+          Nombre | Apellido
+        </h6>
+        <table class="table table-sm table-hover">
+          <tbody>
+            <tr *ngFor="let Contacto of listaContactos">
+    
+              <td>{{Contacto.nombre}}</td>
+              <td>{{Contacto.apellido1}}</td>
+              <td>
+                <a class="btn btn-secondary text-white" (click)="CargarParaEditar(Contacto)">
+                    <i class="far fa-edit"></i>
+                </a>
+                <a class="btn btn-danger text-white" (click)="onDelete(Contacto)">
+                    <i class="fas fa-trash-alt"></i>
+                </a>
+              </td>
+            </tr>
+  
+          </tbody>
+        </table>
+      </div>
+    </div>
+          </div>
+      </div>
+    </div>
+    
+  </body>
+</html>
